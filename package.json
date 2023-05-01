@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "elm-test './src/elm/tests/**/*Tests.elm'"
   },
   "devDependencies": {
     "elm": "^0.19.1-5",
