@@ -10,6 +10,7 @@
     "test": "elm-test './src/elm/tests/**/*Tests.elm'"
   },
   "devDependencies": {
+    "@types/elm": "^0.19.1",
     "elm": "^0.19.1-5",
     "elm-format": "^0.8.7",
     "elm-test": "^0.19.1-revision12",
