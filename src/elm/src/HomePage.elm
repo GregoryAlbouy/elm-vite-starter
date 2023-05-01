@@ -8,7 +8,9 @@ import Html.Events exposing (onClick)
 
 
 type alias Model =
-    Int
+    { env : String
+    , count : Int
+    }
 
 
 type Msg
@@ -19,7 +21,11 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         Increment ->
-            ( model + 1, Cmd.none )
+            ( { model | count = model.count + 1 }, Cmd.none )
+
+
+
+-- View
 
 
 view : Model -> Html Msg
@@ -70,10 +76,15 @@ viewCounter count =
         ]
 
 
-main : Program () Model Msg
+type alias Flags =
+    { env : String
+    }
+
+
+main : Program Flags Model Msg
 main =
     Browser.element
-        { init = \_ -> ( 0, Cmd.none )
+        { init = \{ env } -> ( { env = env, count = 0 }, Cmd.none )
         , update = update
         , subscriptions = \_ -> Sub.none
         , view = view

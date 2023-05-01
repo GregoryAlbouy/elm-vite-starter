@@ -12,6 +12,6 @@ testUpdate =
         [ fuzz int "increments counter" <|
             \randomInt ->
                 Expect.equal
-                    (update Increment randomInt)
-                    ( randomInt + 1, Cmd.none )
+                    ({ count = randomInt, env = "" } |> update Increment |> Tuple.first)
+                    { count = randomInt + 1, env = "" }
         ]
