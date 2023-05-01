@@ -1,5 +1,8 @@
 declare module "*.elm" {
   export const Elm: {
-    HomePage: ElmMain<undefined>;
+    HomePage: ElmMain<{
+      // logs input to the console
+      log: PortFromElm<unknown>;
+    }>;
   };
 }

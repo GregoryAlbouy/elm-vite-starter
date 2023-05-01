@@ -1,4 +1,4 @@
-module HomePage exposing (Msg(..), main, update)
+port module HomePage exposing (Msg(..), main, update)
 
 import Assets
 import Browser
@@ -21,7 +21,7 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         Increment ->
-            ( { model | count = model.count + 1 }, Cmd.none )
+            ( { model | count = model.count + 1 }, log model )
 
 
 
@@ -29,7 +29,7 @@ update msg model =
 
 
 view : Model -> Html Msg
-view count =
+view model =
     div
         [ class "homepage" ]
         [ viewLogo
@@ -45,7 +45,7 @@ view count =
             , class = "logo elm"
             }
         , h1 [] [ text "Vite + Elm" ]
-        , viewCounter count
+        , viewCounter model.count
         , p
             [ class "read-the-docs" ]
             [ text "Click on the Vite and Elm logos to learn more" ]
@@ -66,7 +66,7 @@ viewLogo attrs =
         ]
 
 
-viewCounter : Model -> Html Msg
+viewCounter : Int -> Html Msg
 viewCounter count =
     div
         [ class "card" ]
@@ -74,6 +74,9 @@ viewCounter count =
             [ id "counter", onClick Increment ]
             [ text <| "count is " ++ String.fromInt count ]
         ]
+
+
+port log : Model -> Cmd msg
 
 
 type alias Flags =

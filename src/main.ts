@@ -11,6 +11,8 @@ function initElm() {
       env: process.env.NODE_ENV,
     },
   });
+
+  app.ports.log.subscribe(console.log);
 }
 
 initElm();
