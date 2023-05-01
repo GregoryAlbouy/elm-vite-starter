@@ -1,10 +1,10 @@
-module HomePage exposing (main)
+module HomePage exposing (Msg(..), main, update)
 
+import Assets
 import Browser
 import Html exposing (Html, a, button, div, h1, img, p, text)
 import Html.Attributes exposing (alt, class, href, id, src, target)
 import Html.Events exposing (onClick)
-import Path
 
 
 type alias Model =
@@ -27,13 +27,13 @@ view count =
     div
         [ class "homepage" ]
         [ viewLogo
-            { path = "vite.svg"
+            { src = Assets.viteLogo
             , alt = "Vite logo"
             , href = "https://vitejs.dev"
             , class = "logo"
             }
         , viewLogo
-            { path = "elm.svg"
+            { src = Assets.elmLogo
             , alt = "Elm logo"
             , href = "https://elm-lang.org"
             , class = "logo elm"
@@ -47,16 +47,17 @@ view count =
 
 
 viewLogo :
-    { path : String
+    { src : String
     , alt : String
     , href : String
     , class : String
     }
     -> Html msg
-viewLogo att =
+viewLogo attrs =
     a
-        [ href att.href, target "_blank" ]
-        [ img [ src <| Path.img att.path, alt att.alt, class att.class ] [] ]
+        [ href attrs.href, target "_blank" ]
+        [ img [ src attrs.src, alt attrs.alt, class attrs.class ] []
+        ]
 
 
 viewCounter : Model -> Html Msg
