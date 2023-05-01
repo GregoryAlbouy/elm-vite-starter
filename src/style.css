@@ -95,3 +95,13 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.welcome {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+  min-height: 100vh;
+  margin: auto;
+}
